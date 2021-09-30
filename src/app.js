@@ -11,7 +11,7 @@ const config = require('config');
 const connectDB = require('./common/database')();
 
 // Body parser
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static folder
@@ -49,6 +49,6 @@ app.use(clientRoute)
 
 // Run Server
 const port = config.get('app.port') || 4000;
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Sever running in http://localhost:${port}`);
 });
