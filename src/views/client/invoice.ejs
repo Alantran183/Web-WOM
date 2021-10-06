@@ -27,7 +27,8 @@
             <div class="invoice-right">
                 <h3>Invoice #WOM2000</h3>
 
-                <p>Date: <%= date %></p>
+                <p>Date: <%= date %>
+                </p>
             </div>
 
         </div>
@@ -39,10 +40,18 @@
             <div class="invoice-left">
 
                 <h3>Invoice To:</h3>
-                <h4><%= invoice.user_id.username %></h4>
-                <p><%= invoice.user_id.address.details %> </p>
-                <p><%= invoice.user_id.phoneNumber %></p>
-                <p><%= invoice.user_id.email %></p>
+                <h4>
+                    <%= invoice.user_id.username %>
+                </h4>
+                <p>
+                    <%= invoice.user_id.address.details %>
+                </p>
+                <p>
+                    <%= invoice.user_id.phoneNumber %>
+                </p>
+                <p>
+                    <%= invoice.user_id.email %>
+                </p>
 
             </div>
 
@@ -50,7 +59,7 @@
                 <div class="payment-box">
                     <h3>Payment Details</h3>
 
-                    <table>
+                    <table style="width:112%">
                         <tr>
                             <td>Total Due:</td>
                             <td>$<%= invoice.totalMoney %>.00</td>
@@ -58,12 +67,16 @@
 
                         <tr>
                             <td>Bank Name:</td>
-                            <td><%= invoice.user_id.bankName %></td>
+                            <td>
+                                <%= invoice.user_id.bankName %>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Bank Name:</td>
-                            <td><%= invoice.user_id.bankNumber %></td>
+                            <td>
+                                <%= invoice.user_id.bankNumber %>
+                            </td>
                         </tr>
 
                         <tr>
@@ -97,8 +110,8 @@
     <!----------------footer----------------->
     <%- include('layouts/footer.ejs'); -%>
 
-    <!--------------js for toggle menu-------------->
-    <script src="/static/client/js/main.js"></script>
+        <!--------------js for toggle menu-------------->
+        <script src="/static/client/js/main.js"></script>
 </body>
 
 </html>

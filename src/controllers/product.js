@@ -170,7 +170,7 @@ const viewProductDetails = async (req, res) => {
         const productId = req.params.id
         const dataProduct = await Product.findById({
             _id: productId
-        }).populate({path: 'cat_id'}).lean()
+        }).populate({ path: 'cat_id' }).lean()
         const limitProduct = await Product.find().limit(4)
         res.render('client/product-details', {
             product: dataProduct,
@@ -185,16 +185,35 @@ const doProductDetails = async (req, res) => {
     try {
         const guestId = req.session.guestId
         const productId = req.params.id
-        const pushToCart = await Cart.findOneAndUpdate({
-            user_id: guestId
-        }, {
-            $push: {
-                bag: [{
-                    pro_id: productId
-                }]
-            }
+        const checkProduct = await Cart.findOne({
+            user_id: guestId,
         })
-        res.redirect(`/products/details/${productId}`)
+
+        const productInBag = checkProduct.bag.find(item => item.pro_id.toString() === productId)
+
+        if (productInBag) {
+            const updateAmount = await Cart.updateOne({
+                "bag._id": productInBag._id
+            }, {
+                $set: {
+                    "bag.$.amount": productInBag.amount + 1
+                }
+            })
+        }
+
+        if (productInBag == undefined) {
+            const pushToCart = await Cart.updateOne({
+                user_id: guestId
+            }, {
+                $push: {
+                    bag: [{
+                        pro_id: productId
+                    }]
+                }
+            })
+        }
+
+        return res.redirect(`/products/details/${productId}`)
     } catch (error) {
         console.error(error);
     }

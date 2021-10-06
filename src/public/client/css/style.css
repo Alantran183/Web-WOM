@@ -412,7 +412,7 @@ a{
 
 /*---------------------cart items------------------*/
 .cart-page{
-    margin: 199px auto;
+    margin: 130px auto;
 }
 .btn-cart{
     border: none;
@@ -866,7 +866,7 @@ label{
 
 .box-order table{
     border-collapse: collapse;
-    width: 1060px;
+    width: 161%;
     height: 200px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
